@@ -15,8 +15,10 @@ to HMDs with minor modification to the original source code.
 - ZED SDK 2.7 *
 - CUDA Toolkit 10 *
 - GLM 0.9.9 *
+- Ovrvision Pro SDK 1.90 **
 
 \* OPTIONAL: These libraries are needed to use the external camera (ZED Mini by Stereolabs).
+\** OPTIONAL: The library is needed to use the external camera (Ovrvision Pro by Wizapply).
 
 ## Building the Library
 
@@ -28,7 +30,8 @@ to HMDs with minor modification to the original source code.
 
 Source code modifications are needed to use CLCL.
 1) Comment out a line includes "glClear()" in the rendering routine.
-2) Disable "glext.h" if it is used in the target code.
+2) Resolve conflicts between GLEW used in CLCL and other OpenGL header files
+  e.g.) Disable "glext.h" if it is used in the target code.
 3) Change include path and library path from CAVELib's to CLCL's.
 4) Change library file to link from "libcave_ogl_XX.lib" to "CLCL.lib".
 5) Build.

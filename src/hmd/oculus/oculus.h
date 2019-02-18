@@ -153,6 +153,8 @@ public:
 
 	void StartThread();
 	void StopThread();
+	bool IsMainThread();
+	bool IsDisplayThread();
 
 	void SetInitFunction(OVRCALLBACK callback, std::vector<void*> arg_list)
 	{
@@ -279,6 +281,8 @@ private:
 	bool   m_IsThreadRunning; // flag to stop the thread
 //	bool   m_IsInitializedGLFW;
 	std::atomic<bool>   m_IsInitializedGLFW;
+	DWORD  m_MainThreadID;
+	DWORD  m_DisplayThreadID;
 
 #ifdef USE_OVRVISION
 	OVRVision           m_OVRVision;

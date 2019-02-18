@@ -76,6 +76,8 @@ Oculus::Oculus()
 	p_StopFunction = nullptr;
 	p_DrawFunction = nullptr;
 	p_IdleFunction = nullptr;
+	m_MainThreadID = 0;
+	m_DisplayThreadID = 0;
 
 	m_IsInitFunctionExecuted = false;
 }
@@ -1248,6 +1250,8 @@ int Oculus::GetMouseButton(int button)
 
 void Oculus::StartThread()
 {
+	DWORD m_MainThreadID = GetCurrentThreadId();
+
 	m_HMutex = CreateMutex(NULL, FALSE, NULL);
 	m_HRender = (HANDLE)_beginthreadex(0, 0, MainThreadLauncherEX, reinterpret_cast<void*>(this), 0, 0);
 
@@ -1262,6 +1266,8 @@ void Oculus::StopThread()
 
 void Oculus::MainThreadEX()
 {
+	DWORD m_DisplayThreadID = GetCurrentThreadId();
+
 	Init();
 	InitGL();
 	CreateBuffers();
@@ -1294,6 +1300,29 @@ unsigned __stdcall Oculus::MainThreadLauncherEX(void *obj)
 	reinterpret_cast<Oculus*>(obj)->MainThreadEX();
 	_endthreadex(0);
 	return 0;
+}
+
+bool Oculus::IsMainThread()
+{
+	if (GetCurrentThreadId() == m_MainThreadID)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool Oculus::IsDisplayThread()
+{
+	if (GetCurrentThreadId() == m_DisplayThreadID)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 #if ((OVR_PRODUCT_VERSION == 0) && (OVR_MAJOR_VERSION == 5)) // Oculus SDK 0.5.0.1 only
