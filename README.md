@@ -10,7 +10,7 @@ to HMDs with minor modification to the original source code.
 
 ## Required Hardware
 
-One of the following hardware:
+&nbsp; One of the following hardware:
 
 - Oculus Rift with Oculus Touch
 - Oculus Rift
