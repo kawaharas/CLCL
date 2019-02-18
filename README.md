@@ -46,3 +46,8 @@ Compilation of the code.
 4) Change library file to link from "libcave_ogl_XX.lib" to "CLCL.lib".
 5) Build.
 6) If compilation failed, modification of codes is needed. -> go back to 5)
+
+## About Trademarks
+
+###### &nbsp; The CAVE is a registered trademark of the Board of Trustees of the University of Illinois at Chicago.
+###### &nbsp; CAVELib is a trademark of the University of Illinois Board of Trustees.
