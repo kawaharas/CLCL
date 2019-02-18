@@ -8,18 +8,22 @@ to HMDs with minor modification to the original source code.
 
 ## Required Software / Libraries
 
+&nbsp; Minimum requirement:
+
 - Visual Studio 2017
 - Oculus SDK 1.26.0
 - GLFW 3.2.1
 - GLEW 2.1.0
+
+&nbsp; Optional:
+
 - ZED SDK 2.7 *
 - CUDA Toolkit 10 *
 - GLM 0.9.9 *
 - Ovrvision Pro SDK 1.90 **
 
-\* OPTIONAL: These libraries are needed to use the external camera (ZED Mini by Stereolabs).
-
-\** OPTIONAL: The library is needed to use the external camera (Ovrvision Pro by Wizapply).
+&nbsp; \*  These libraries are needed to use the external camera (ZED Mini by Stereolabs).  
+&nbsp; \** The library is needed to use the external camera (Ovrvision Pro by Wizapply).
 
 ## Building the Library
 
