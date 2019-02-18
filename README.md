@@ -8,6 +8,14 @@ for developing application software executable on CAVEs,
 and it enables us to easily port CAVELib application software 
 to HMDs with minor modification to the original source code.
 
+## Required Hardware
+
+One of the following hardware:
+
+- Oculus Rift with Oculus Touch
+- Oculus Rift
+- Oculus Development Kit 2
+
 ## Required Software / Libraries
 
 &nbsp; Minimum requirement:
