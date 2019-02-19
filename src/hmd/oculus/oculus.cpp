@@ -1313,6 +1313,7 @@ bool Oculus::IsMainThread()
 		return false;
 	}
 }
+
 bool Oculus::IsDisplayThread()
 {
 	if (GetCurrentThreadId() == m_DisplayThreadID)

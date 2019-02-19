@@ -38,7 +38,7 @@ to HMDs with minor modification to the original source code.
 ## Building the Library
 
 1) Open CLCL.sln.
-2) Set include path and library path of Oculus SDK.
+2) Set include path and library path to Oculus SDK.
 3) Build library.
 
 ## Using the Library
