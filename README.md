@@ -28,6 +28,9 @@ to HMDs with minor modification to the original source code.
 
 &nbsp; Optional:
 
+&nbsp; &nbsp; Following libraries are not used in the pre-built library.  
+&nbsp; &nbsp; Please rebuild your own library if you want to enable the external camera function.
+
 - ZED SDK 2.7 *
 - CUDA Toolkit 10 *
 - GLM 0.9.9 *
