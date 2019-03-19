@@ -198,7 +198,9 @@ draw(struct _planetdata *planet)
 {
 	int i;
 
-//	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT); // for CLCL_Oculus
+#ifndef USE_CLCL_OCULUS_SDK
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+#endif
 
 	glCallList(orbits);
 

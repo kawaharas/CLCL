@@ -1,6 +1,6 @@
 # CLCL (CAVELib Compatible Library for HMD)
 
-***This is the Oculus SDK version of CLCL.***
+***This is the Oculus SDK version of CLCL. OpenVR version is [here](https://github.com/kawaharas/CLCL-OpenVR).***
 
 CLCL is a C++ library for porting CAVE application software to HMDs. 
 It emulates the function calls of CAVELib, which is a commercial library 
@@ -22,8 +22,10 @@ to HMDs with minor modification to the original source code.
 
 - Visual Studio 2017
 - Oculus SDK 1.26.0
-- GLFW 3.2.1
-- GLEW 2.1.0
+- GLFW 3.2.1 *
+- GLEW 2.1.0 *
+
+&nbsp; \*  These libraries are needed to build with multi-threaded (/MT) option.
 
 &nbsp; Optional:
 
@@ -52,7 +54,7 @@ Compilation of the code.
 
 3) Change include path and library path from CAVELib's to CLCL's.
 4) Change library file to link from "libcave_ogl_XX.lib" to "CLCL.lib".
-5) Build.
+5) Build with multi-threaded (/MT) option.
 6) If compilation failed, modification of codes is needed. -> go back to 5)
 
 ## About Trademarks

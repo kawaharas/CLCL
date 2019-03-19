@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDKS\OculusSDK\1.32.0\LibOVR\Include;C:\SDKS\OVRVisionPro\1.90\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include;C:\Program Files %28x86%29\ZED SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDKS\OculusSDK\1.31.0\LibOVR\Include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include;C:\Program Files %28x86%29\ZED SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <DisableSpecificWarnings>4006;4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -131,7 +131,7 @@
       <AdditionalLibraryDirectories>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\lib\x64;C:\SDKS\OculusSDK\1.26.0\LibOVR\Lib\Windows\x64\Release\VS2017;C:\SDKS\OVRVisionPro\1.90\bin\x64;C:\Program Files %28x86%29\ZED SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\SDKS\OculusSDK\1.32.0\LibOVR\Lib\Windows\x64\Release\VS2017;C:\SDKS\OVRVisionPro\1.90\bin\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64;C:\Program Files %28x86%29\ZED SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\SDKS\OculusSDK\1.31.0\LibOVR\Lib\Windows\x64\Release\VS2017;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64;C:\Program Files %28x86%29\ZED SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>legacy_stdio_definitions.lib;GLFW3.lib;GLEW32s.lib;opengl32.lib;glu32.lib;winmm.lib;libovr.lib;cuda.lib;cudart_static.lib;sl_zed64.lib;sl_core64.lib;sl_input64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
