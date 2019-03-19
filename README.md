@@ -46,7 +46,7 @@ to HMDs with minor modification to the original source code.
 
 Source code modifications are needed to use CLCL.
 
-1) Comment out a line includes "glClear()" in the rendering routine.
+1) Disable a line includes "glClear()" in the rendering routine by commenting out or using "USE_CLCL_OCULUS_SDK" directive.
 2) Resolve conflicts between GLEW and other OpenGL header files if these are used in the target code.
 
 Compilation of the code.
