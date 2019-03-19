@@ -11,7 +11,7 @@
 #include <cave_ogl.h>
 #include <GL/glu.h>
 #include <stdlib.h>
-#ifndef _WIN32
+#ifdef IRIX
 #include <unistd.h>
 #include <strings.h>
 #else
@@ -59,7 +59,7 @@ main(int argc, char **argv)
 	while (!CAVEgetbutton(CAVE_ESCKEY))
 	{
 		compute(snows);
-#ifndef _WIN32
+#ifdef IRIX
 		sginap(1);
 #else
 		CAVEUSleep(10);

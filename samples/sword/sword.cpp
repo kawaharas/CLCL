@@ -8,7 +8,7 @@
 */
 
 #include <cave_ogl.h>
-#ifndef _WIN32
+#ifdef IRIX
 #include <unistd.h>
 #endif
 
@@ -41,7 +41,7 @@ main(int argc, char **argv)
 	while (!CAVEgetbutton(CAVE_ESCKEY))
 	{
 		compute(sword);
-#ifndef _WIN32
+#ifdef IRIX
 		sginap(1);
 #else
 		CAVEUSleep(10);
