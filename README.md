@@ -12,9 +12,8 @@ to HMDs with minor modification to the original source code.
 
 &nbsp; One of the following hardware:
 
-- Oculus Rift with Oculus Touch
-- Oculus Rift
-- Oculus Development Kit 2
+- Oculus Rift with Oculus Touch, Xbox controller or mouse
+- Oculus Development Kit 2 with mouse
 
 ## Required Software / Libraries
 
