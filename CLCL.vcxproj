@@ -132,7 +132,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>C:\SDKS\OculusSDK\1.31.0\LibOVR\Lib\Windows\x64\Release\VS2017;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64;C:\Program Files %28x86%29\ZED SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;GLFW3.lib;GLEW32s.lib;opengl32.lib;glu32.lib;winmm.lib;libovr.lib;cuda.lib;cudart_static.lib;sl_zed64.lib;sl_core64.lib;sl_input64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;GLFW3.lib;GLEW32s.lib;opengl32.lib;glu32.lib;winmm.lib;libovr.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
