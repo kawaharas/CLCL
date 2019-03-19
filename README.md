@@ -60,4 +60,5 @@ Compilation of the code.
 
 &nbsp; The CAVE is a registered trademark of the Board of Trustees of the University of Illinois at Chicago.  
 &nbsp; CAVELib is a trademark of the University of Illinois Board of Trustees.  
-&nbsp; Oculus, Rift, and Oculus Touch are trademarks or registered trademarks of Facebook Technologies, LLC.
+&nbsp; Oculus, Rift, and Oculus Touch are trademarks or registered trademarks of Facebook Technologies, LLC.  
+&nbsp; All other trademarks are property of their respective owners.
