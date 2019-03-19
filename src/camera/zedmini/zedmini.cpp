@@ -13,6 +13,8 @@
 
 #include "zedmini.h"
 
+#ifdef USE_ZEDMINI
+
 #include <OVR_CAPI.h>
 #include <OVR_CAPI_GL.h>
 #include <Extras/OVR_Math.h>
@@ -548,3 +550,5 @@ void ZedMini::SetScreenCoord(int bufferWidth, int bufferHeight, float offsetLens
 		}
 	}
 }
+
+#endif // USE_ZEDMINI

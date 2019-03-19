@@ -13,16 +13,20 @@
 
 #pragma once
 
+#include "../../settings.h"
+
+#ifdef USE_ZEDMINI
+
 #include <GL/glew.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cuda_gl_interop.h>
 #include <sl_zed/Camera.hpp>
-//#pragma comment(lib, "cuda.lib")
-//#pragma comment(lib, "cudart.lib")
-//#pragma comment(lib, "cudart_static.lib")
-//#pragma comment(lib, "sl_core64.lib")
-//#pragma comment(lib, "sl_zed64.lib")
+#pragma comment(lib, "cuda.lib")
+#pragma comment(lib, "cudart.lib")
+#pragma comment(lib, "cudart_static.lib")
+#pragma comment(lib, "sl_core64.lib")
+#pragma comment(lib, "sl_zed64.lib")
 
 #include "../../camera/zedmini/shader.h"
 
@@ -66,3 +70,5 @@ public:
 	int    width() { return m_Width; }
 	int    height() { return m_Height; }
 };
+
+#endif // USE_ZEDMINI
