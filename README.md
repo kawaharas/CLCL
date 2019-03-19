@@ -1,6 +1,6 @@
 # CLCL (CAVELib Compatible Library for HMD)
 
-***This is the Oculus SDK version of CLCL. OpenVR version is [here](https://github.com/kawaharas/CLCL-OpenVR).***
+***This is the CLCL for Oculus SDK. OpenVR version is [here](https://github.com/kawaharas/CLCL-OpenVR).***
 
 CLCL is a C++ library for porting CAVE application software to HMDs. 
 It emulates the function calls of CAVELib, which is a commercial library 
