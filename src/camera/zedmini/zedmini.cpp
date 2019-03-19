@@ -298,27 +298,6 @@ void ZedMini::PreStore()
 		runtime_parameters.enable_depth = true;
 		runtime_parameters.enable_point_cloud = false;
 
-#ifdef DEBUG
-		std::cout << "\n[Runtime]" << std::endl;
-		std::cout << "SensingMode=" << (int)runtime_parameters.sensing_mode << std::endl;
-		if (runtime_parameters.enable_depth)
-		{
-			std::cout << "bEnableDepth=True" << std::endl;
-		}
-		else
-		{
-			std::cout << "bEnableDepth=False" << std::endl;
-		}
-		if (runtime_parameters.enable_point_cloud)
-		{
-			std::cout << "bEnablePointCloud=True" << std::endl;
-		}
-		else
-		{
-			std::cout << "bEnablePointCloud=False" << std::endl;
-		}
-#endif // DEBUG
-
 		// Set the ZED's CUDA context to this separate CPU thread
 		cuCtxSetCurrent(m_Camera.getCUDAContext());
 		if (m_Camera.grab(runtime_parameters) == sl::SUCCESS)

@@ -14,15 +14,13 @@
 #pragma once
 
 #include <GL/glew.h>
-
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cuda_gl_interop.h>
+#include <sl_zed/Camera.hpp>
 //#pragma comment(lib, "cuda.lib")
 //#pragma comment(lib, "cudart.lib")
 //#pragma comment(lib, "cudart_static.lib")
-
-#include <sl_zed/Camera.hpp>
 //#pragma comment(lib, "sl_core64.lib")
 //#pragma comment(lib, "sl_zed64.lib")
 

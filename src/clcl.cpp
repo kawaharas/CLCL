@@ -461,7 +461,6 @@ int CAVEButtonChange(int buttonNumber)
 					else state = 0;
 					break;
 				case 4:
-//					state = glfwGetMouseButton(window, CONTROLLER_BUTTON4);
 					state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON4);
 					break;
 				default:
@@ -503,19 +502,15 @@ int CAVEButtonChange(int buttonNumber)
 		switch (buttonNumber)
 		{
 			case 1:
-//				state = glfwGetMouseButton(window, CONTROLLER_BUTTON1);
 				state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON1);
 				break;
 			case 2:
-//				state = glfwGetMouseButton(window, CONTROLLER_BUTTON2);
 				state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON2);
 				break;
 			case 3:
-//				state = glfwGetMouseButton(window, CONTROLLER_BUTTON3);
 				state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON3);
 				break;
 			case 4:
-//				state = glfwGetMouseButton(window, CONTROLLER_BUTTON4);
 				state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON4);
 				break;
 			default:
@@ -526,19 +521,15 @@ int CAVEButtonChange(int buttonNumber)
 	switch (buttonNumber)
 	{
 		case 1:
-//			state = glfwGetMouseButton(window, CONTROLLER_BUTTON1);
 			state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON1);
 			break;
 		case 2:
-//			state = glfwGetMouseButton(window, CONTROLLER_BUTTON2);
 			state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON2);
 			break;
 		case 3:
-//			state = glfwGetMouseButton(window, CONTROLLER_BUTTON3);
 			state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON3);
 			break;
 		case 4:
-//			state = glfwGetMouseButton(window, CONTROLLER_BUTTON4);
 			state = p_CLCL->p_Impl->hmd()->GetMouseButton(CONTROLLER_BUTTON4);
 			break;
 		default:
@@ -633,7 +624,6 @@ bool IsButtonPressed(const int button)
 	}
 	else
 	{
-//		int state = glfwGetMouseButton(p_CLCL->p_Impl->hmd()->window(), button);
 		int state = p_CLCL->p_Impl->hmd()->GetMouseButton(button);
 		if (state == GLFW_PRESS)
 		{
@@ -641,7 +631,6 @@ bool IsButtonPressed(const int button)
 		}
 	}
 #else
-//	int state = glfwGetMouseButton(p_CLCL->hmd()->window(), button);
 	int state = p_CLCL->p_Impl->hmd()->GetMouseButton(button);
 	if (state == GLFW_PRESS)
 	{

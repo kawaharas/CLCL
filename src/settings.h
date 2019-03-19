@@ -54,4 +54,4 @@ typedef long long     llong;
 #endif //  USE_OVRVISION_PRO
 #endif //  USE_OVRVISION
 
-#define USE_ZEDMINI
+//#define USE_ZEDMINI
