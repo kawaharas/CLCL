@@ -17,7 +17,7 @@ to HMDs with minor modification to the original source code.
 
 ## Required Software / Libraries
 
-&nbsp; Minimum requirement:
+&nbsp; **Minimum requirement:**
 
 - Visual Studio 2017
 - Oculus SDK 1.26.0
@@ -26,7 +26,7 @@ to HMDs with minor modification to the original source code.
 
 &nbsp; \*  These libraries are needed to build with multi-threaded (/MT) option.
 
-&nbsp; Optional (experimental: for the external camera function):
+&nbsp; **Optional (experimental: for the external camera function):**
 
 &nbsp; &nbsp; Following libraries are not used in the pre-built library.  
 &nbsp; &nbsp; Please rebuild your own library if you want to enable the external camera function.  
