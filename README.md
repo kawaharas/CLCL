@@ -26,10 +26,11 @@ to HMDs with minor modification to the original source code.
 
 &nbsp; \*  These libraries are needed to build with multi-threaded (/MT) option.
 
-&nbsp; Optional:
+&nbsp; Optional (experimental: for the external camera function):
 
 &nbsp; &nbsp; Following libraries are not used in the pre-built library.  
-&nbsp; &nbsp; Please rebuild your own library if you want to enable the external camera function.
+&nbsp; &nbsp; Please rebuild your own library if you want to enable the external camera function.  
+&nbsp; &nbsp; To toggle enable/disable the external camera, press "c" key.
 
 - ZED SDK 2.7 *
 - CUDA Toolkit 10 *
@@ -58,6 +59,13 @@ Compilation of the code.
 4) Change library file to link from "libcave_ogl_XX.lib" to "CLCL.lib".
 5) Build with multi-threaded (/MT) option.
 6) If compilation failed, modification of codes is needed. -> go back to 5)
+
+## Controller
+
+| |CAVE_JOYSTICK_X<br>CAVE_JOYSTICK_Y |CAVE_BUTTON1 |CAVE_BUTTON2 |CAVE_BUTTON3 |
+|---|---|---|---|---|
+|Oculus Touch (Right) |Thumb stick |Button A |Trigger |Button B |
+|Mouse |Wheel (CAVE_JOYSTICK_Y) |Left button |Middle button |Right button |
 
 ## About Trademarks
 
