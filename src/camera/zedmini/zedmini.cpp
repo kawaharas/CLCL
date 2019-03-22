@@ -7,7 +7,9 @@
 //     Copyright 2015-2019 Shintaro Kawahara(kawahara@jamstec.go.jp).
 //     All rights reserved.
 //
-//   Please read the file "LICENCE.txt" before you use this software.
+//   This file is based on the following code,
+//    https://github.com/stereolabs/zed-oculus/blob/master/src/main.cpp
+//     Copyright (c) 2018, STEREOLABS.
 //
 ////////////////////////////////////////////////////////////////////////////////
 

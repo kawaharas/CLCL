@@ -2,8 +2,13 @@
 //
 // shader.cpp
 //
+//   CLCL: CAVELib Compatible Library
+//
+//     Copyright 2015-2019 Shintaro Kawahara(kawahara@jamstec.go.jp).
+//     All rights reserved.
+//
 //  Shader class from a sample program included in ZED SDK:
-//     Copyright 2018 STEREOLABS.
+//     Copyright (c) 2018, STEREOLABS.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
