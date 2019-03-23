@@ -1,12 +1,12 @@
 # How to build VFIVE using CLCL
 
-&nbsp; VFIVE is an interactive visualization software for CAVE-type VR systems.  
-&nbsp; It was develeped by Akira Kageyama (Kobe University) and Nobuaki Ohno (University of Hyogo).  
-&nbsp; For details of VFIVE, please see the following paper;
+VFIVE is an interactive visualization software for CAVE-type VR systems.  
+It was develeped by Akira Kageyama (Kobe University) and Nobuaki Ohno (University of Hyogo).  
+For details of VFIVE, please see the following paper;
 
-&nbsp; &nbsp; A. Kageyama, Y. Tamura, T. Sato:  
-&nbsp; &nbsp; Visualization of Vector Field by Virtual Reality,  
-&nbsp; &nbsp; Pro-gress of Theoretical Physics Supplement, 138 (2000), 665-673.
+&nbsp; A. Kageyama, Y. Tamura, T. Sato:  
+&nbsp; Visualization of Vector Field by Virtual Reality,  
+&nbsp; Pro-gress of Theoretical Physics Supplement, 138 (2000), 665-673.
 
 
 ## Download Source code
