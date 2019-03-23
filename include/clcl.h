@@ -13,6 +13,7 @@
 
 #pragma once
 
+#define USE_CLCL
 #define USE_CLCL_OCULUS_SDK
 
 #ifdef _WIN32
