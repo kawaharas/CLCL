@@ -7,6 +7,8 @@ It emulates the function calls of CAVELib, which is a commercial library
 for developing application software executable on CAVEs, 
 and it enables us to easily port CAVELib application software 
 to HMDs with minor modification to the original source code.
+Function calls commonly used in the CAVELib program are implemented 
+in CLCL. Networking functions for multiple CAVEs have not yet been implemented.
 
 ## Required Hardware
 
@@ -17,20 +19,20 @@ to HMDs with minor modification to the original source code.
 
 ## Required Software / Libraries
 
-&nbsp; **Minimum requirement:**
+**Minimum requirement:**
 
-- Visual Studio 2017
+- Visual Studio
 - Oculus SDK 1.26.0
 - GLFW 3.2.1 *
 - GLEW 2.1.0 *
 
 &nbsp; \*  These libraries are needed to build with multi-threaded (/MT) option.
 
-&nbsp; **Optional (experimental: for the external camera function):**
+**Optional (experimental: for the external camera function):**
 
-&nbsp; &nbsp; Following libraries are not used in the pre-built library.  
-&nbsp; &nbsp; Please rebuild your own library if you want to enable the external camera function.  
-&nbsp; &nbsp; To toggle enable/disable the external camera, press "c" key.
+Following libraries are not used in the pre-built library. 
+Recompilation is required to enable the external camera function. 
+To toggle enable/disable the external camera, press "c" key.
 
 - ZED SDK 2.7 *
 - CUDA Toolkit 10 *
@@ -60,7 +62,7 @@ Compilation of the code.
 5) Build with multi-threaded (/MT) option.
 6) If compilation failed, modification of codes is needed. -> go back to 5)
 
-## Controller
+## Controller Inputs
 
 | |CAVE_JOYSTICK_X<br>CAVE_JOYSTICK_Y |CAVE_BUTTON1 |CAVE_BUTTON2 |CAVE_BUTTON3 |
 |---|---|---|---|---|

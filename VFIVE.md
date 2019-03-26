@@ -1,25 +1,25 @@
 # How to build VFIVE using CLCL
 
-VFIVE is an interactive visualization software for CAVE-type VR systems.  
-It was develeped by Akira Kageyama (Kobe University) and Nobuaki Ohno (University of Hyogo).  
+**VFIVE** is an interactive visualization software for CAVE-type VR systems. 
+It was develeped by Akira Kageyama (Kobe University) and Nobuaki Ohno (University of Hyogo). 
 For details of VFIVE, please see the following paper;
 
-&nbsp; A. Kageyama, Y. Tamura, T. Sato:  
-&nbsp; Visualization of Vector Field by Virtual Reality,  
-&nbsp; Pro-gress of Theoretical Physics Supplement, 138 (2000), 665-673.
+&nbsp; *A. Kageyama, Y. Tamura, T. Sato:*  
+&nbsp; *Visualization of Vector Field by Virtual Reality,*  
+&nbsp; *Progress of Theoretical Physics Supplement, 138 (2000), 665-673.*
 
 
-## Download Source code
+## Download source code
 
 &nbsp; Download the source code of VFIVE and a sample dataset from the following URL:
 
-&nbsp; &nbsp;  [https://www.jamstec.go.jp/ceist/aeird/avcrg/vfive.ja.html](https://www.jamstec.go.jp/ceist/aeird/avcrg/vfive.ja.html)
+&nbsp; &nbsp; [https://www.jamstec.go.jp/ceist/aeird/avcrg/vfive.ja.html](https://www.jamstec.go.jp/ceist/aeird/avcrg/vfive.ja.html)
 
 &nbsp; &nbsp; vfive3.72Amt.zip  
 &nbsp; &nbsp; tex_maker.zip *  
 &nbsp; &nbsp; sample_little.tar.gz
 
-&nbsp; \*  **tex_maker** is a program to generate texture images for menu panels of VFIVE. To build **tex_maker**, GLUT is needed.
+&nbsp; \*  **tex_maker** is a program to generate texture images for menu panels of VFIVE. GLUT is required to compile it.
 
 ## Create project
 
@@ -27,16 +27,13 @@ For details of VFIVE, please see the following paper;
 
 ## Project settings
 
-&nbsp; Add (PATH_TO_CLCL)/include to include paths and (PATH_TO_CLCL)/lib/x64 to library paths.  
-
-&nbsp; \[C/C++\]-\[Pre-processor\]-\[Difinition of pre-processor\]  
-&nbsp; &nbsp; WIN32;\_CRT_SECURE_NO_WARNINGS;
-
-&nbsp; \[C/C++\]-\[Code generation\]-\[Runtime library\]  
-&nbsp; &nbsp; Multi-threaded (/MT)
-
-&nbsp; \[Linker\]-\[Input\]-\[Additional Library\]  
-&nbsp; &nbsp; CLCL.lib
+- Add &#123;&#36;PATH_TO_CLCL&#125;/include to include paths and &#123;&#36;PATH_TO_CLCL&#125;/lib/x64 to library paths.
+- Add ***&quot;WIN32&quot;*** and ***&quot;&#095;CRT&#095;SECURE&#095;NO&#095;WARNINGS&quot;*** to 
+&#91;C/C++&#93;-&#91;Preprocessor&#93;-&#91;Preprocessor Difinitions&#93;.
+- Add &quot;***CLCL.lib***&quot; to 
+&#91;Linker&#93;-&#91;Input&#93;-&#91;Additional Dependencies&#93;.
+- Select ***&quot;Multi-threaded &#040;&frasl;MT&#041;&quot;*** to 
+&#91;C/C++&#93;-&#91;Code Generation&#93;-&#91;Runtime library&#93;.
 
 ## Source code modifications
 
