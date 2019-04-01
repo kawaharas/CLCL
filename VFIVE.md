@@ -33,7 +33,7 @@ For details of VFIVE, please see the following paper;
 &#91;Linker&#93;-&#91;General&#93;-&#91;Additional Library Directories&#93;.
 - Add ***&quot;WIN32&quot;*** and ***&quot;&#095;CRT&#095;SECURE&#095;NO&#095;WARNINGS&quot;*** to 
 &#91;C/C++&#93;-&#91;Preprocessor&#93;-&#91;Preprocessor Difinitions&#93;.
-- Add &quot;***CLCL.lib***&quot; to 
+- Add &quot;***CLCL.lib***&quot; or &quot;***CLCL_openvr.lib***&quot; to 
 &#91;Linker&#93;-&#91;Input&#93;-&#91;Additional Dependencies&#93;.
 - Select ***&quot;Multi-threaded &#040;&frasl;MT&#041;&quot;*** in 
 &#91;C/C++&#93;-&#91;Code Generation&#93;-&#91;Runtime Library&#93;.
@@ -91,7 +91,7 @@ For details of VFIVE, please see the following paper;
   334 #else
 ```
 
-&nbsp; **main.cpp**
+&nbsp; **main.cpp** (Oculus SDK version only)
 
 &nbsp; In Oculus SDK, left-eye image and right-eye image are drawn on same render buffer.
 ```diff
