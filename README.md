@@ -22,7 +22,7 @@ in CLCL. Networking functions for multiple CAVEs have not yet been implemented.
 **Minimum requirement:**
 
 - Visual Studio
-- Oculus SDK 1.26.0
+- Oculus SDK 1.26.0 (Contains code for old SDK versions (0.5.0.1 to 1.0), but they are not already maintained.)
 - GLFW 3.2.1 *
 - GLEW 2.1.0 *
 
