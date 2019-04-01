@@ -27,13 +27,18 @@ For details of VFIVE, please see the following paper;
 
 ## Project settings
 
-- Add &#123;&#36;PATH_TO_CLCL&#125;/include to include paths and &#123;&#36;PATH_TO_CLCL&#125;/lib/x64 to library paths.
+- Add ***&quot;&#123;&#36;PATH_TO_CLCL&#125;/include&quot;*** to 
+&#91;C/C++&#93;-&#91;General&#93;-&#91;Additional Include Directories&#93;.
+- Add ***&quot;&#123;&#36;PATH_TO_CLCL&#125;/lib/x64&quot;*** to 
+&#91;Linker&#93;-&#91;General&#93;-&#91;Additional Library Directories&#93;.
 - Add ***&quot;WIN32&quot;*** and ***&quot;&#095;CRT&#095;SECURE&#095;NO&#095;WARNINGS&quot;*** to 
 &#91;C/C++&#93;-&#91;Preprocessor&#93;-&#91;Preprocessor Difinitions&#93;.
 - Add &quot;***CLCL.lib***&quot; to 
 &#91;Linker&#93;-&#91;Input&#93;-&#91;Additional Dependencies&#93;.
-- Select ***&quot;Multi-threaded &#040;&frasl;MT&#041;&quot;*** to 
-&#91;C/C++&#93;-&#91;Code Generation&#93;-&#91;Runtime library&#93;.
+- Select ***&quot;Multi-threaded &#040;&frasl;MT&#041;&quot;*** in 
+&#91;C/C++&#93;-&#91;Code Generation&#93;-&#91;Runtime Library&#93;.
+- Select ***&quot;No&quot;*** in 
+&#91;C/C++&#93;-&#91;Language&#93;-&#91;Conformance mode&#93;.
 
 ## Source code modifications
 
@@ -99,6 +104,6 @@ For details of VFIVE, please see the following paper;
 
 &nbsp; To launch VFIVE, type following command.  
 
-```diff
+```
   > vfive.exe dynamo.v5 -l dynamolines
 ```
