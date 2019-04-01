@@ -68,7 +68,6 @@ Oculus::Oculus()
 	}
 
 	m_IsThreadRunning = true;
-//	m_IsInitializedGLFW = false;
 	m_IsInitializedGLFW.store(false);
 	m_HMutex = nullptr;
 	m_HRender = nullptr;
@@ -631,7 +630,7 @@ void Oculus::CreateBuffers()
 	m_ZedMini.SetScreenCoord(m_RenderTargetSize.w, m_RenderTargetSize.h, offsetLensCenterX, offsetLensCenterY);
 #endif // USE_ZEDMINI
 
-#ifdef TEXTURE_COPY_TEST
+#ifdef STORE_LEFT_EYE_TEXTURE
 	m_LeftEyeTextureData = (uchar *)malloc(sizeof(uchar) * m_RenderTargetSize.w / 2 * m_RenderTargetSize.h * 3);
 /*
 	glGenTextures(1, &m_LeftEyeTextureID);
@@ -642,7 +641,7 @@ void Oculus::CreateBuffers()
 		0, GL_RGBA, GL_UNSIGNED_BYTE, m_LeftEyeTextureData);
 	glBindTexture(GL_TEXTURE_2D, 0);
 */
-#endif // TEXTURE_COPY_TEST
+#endif // STORE_LEFT_EYE_TEXTURE
 }
 
 void Oculus::Terminate()
@@ -871,11 +870,11 @@ void Oculus::PreProcess()
 void Oculus::PostProcess()
 {
 #if (OVR_PRODUCT_VERSION == 1)
-#ifdef TEXTURE_COPY_TEST
+#ifdef STORE_LEFT_EYE_TEXTURE
 	const auto& vp0 = m_LayerEyeFov.Viewport[0];
 //	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, vp0.Size.w, vp0.Size.h, GL_RGB, GL_UNSIGNED_BYTE, m_LeftEyeTextureData);
 	glDrawPixels(vp0.Size.w, vp0.Size.h, GL_RGB, GL_UNSIGNED_BYTE, m_LeftEyeTextureData);
-#endif // TEXTURE_COPY_TEST
+#endif // STORE_LEFT_EYE_TEXTURE
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 0, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -1025,7 +1024,7 @@ void Oculus::SetMatrix(int eyeIndex)
 	m_ZedMini.DrawImage(eyeIndex);
 #endif // USE_ZEDMINI
 
-#ifdef TEXTURE_COPY_TEST
+#ifdef STORE_LEFT_EYE_TEXTURE
 	if (eyeIndex == 1)
 	{
 		const auto& vp0 = m_LayerEyeFov.Viewport[0];
@@ -1034,7 +1033,7 @@ void Oculus::SetMatrix(int eyeIndex)
 //		glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, vp0.Pos.x, vp0.Pos.y, vp0.Size.w, vp0.Size.h);
 //		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LeftEyeTextureData);
 }
-#endif // TEXTURE_COPY_TEST
+#endif // STORE_LEFT_EYE_TEXTURE
 #endif
 
 	OVR::Matrix4f rollPitchYaw = OVR::Matrix4f::RotationY(0.0f);

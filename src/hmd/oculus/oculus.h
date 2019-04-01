@@ -13,7 +13,7 @@
 
 #pragma once
 
-//#define TEXTURE_COPY_TEST
+//#define STORE_LEFT_EYE_TEXTURE
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "../../settings.h"
@@ -244,8 +244,8 @@ private:
 	uint m_CurrentControllerType;                // Oculus Touch
 	OVR::Vector3f       m_HandTranslation[2];    // Oculus Touch
 	OVR::Vector3f       m_HandVector[2][3];      // Oculus Touch
-	OVR::Vector3f       m_HandTranslationNav[2];    // Oculus Touch
-	OVR::Vector3f       m_HandVectorNav[2][3];      // Oculus Touch
+	OVR::Vector3f       m_HandTranslationNav[2]; // Oculus Touch
+	OVR::Vector3f       m_HandVectorNav[2][3];   // Oculus Touch
 #endif
 
 	GLFWwindow*         m_Window;
@@ -279,7 +279,6 @@ private:
 	HANDLE m_HMutex;
 	HANDLE m_HRender;
 	bool   m_IsThreadRunning; // flag to stop the thread
-//	bool   m_IsInitializedGLFW;
 	std::atomic<bool>   m_IsInitializedGLFW;
 	DWORD  m_MainThreadID;
 	DWORD  m_DisplayThreadID;
@@ -292,30 +291,10 @@ private:
 	ZedMini             m_ZedMini;
 #endif // USE_ZEDMINI
 
-#ifdef TEXTURE_COPY_TEST
+#ifdef STORE_LEFT_EYE_TEXTURE
 	uchar* m_LeftEyeTextureData;
 	GLuint m_LeftEyeTextureID;
-#endif // TEXTURE_COPY_BUFFER
-
-/*
-#ifdef USE_MIRROR_WINDOW
-	typedef enum {
-		DIRECT_MODE = 0,
-		EXTEND_MODE,
-		EXTEND_MODE_PORTRAIT,
-	} WindowStyle;
-
-	WindowStyle m_WindowStyle = DIRECT_MODE;
-	GLFWwindow* m_MirrorWindow;
-	uint        m_MirrorWindowWidth;
-	uint        m_MirrorWindowHeight;
-	uchar*      m_MirrorRGBImage;
-#endif // USE_MIRROR_WINDOW
-
-#if (OVR_PRODUCT_VERSION == 0)
-	GLFWmonitor* CheckOVR();
-#endif
-*/
+#endif // STORE_LEFT_EYE_TEXTURE
 
 #ifdef USE_MIRROR_WINDOW
 	typedef enum {
@@ -467,9 +446,6 @@ private:
 	}
 
 	void MainThreadEX();
-//	int  MainThread();
-//	void MainThreadLauncher(void*);
-//	static void MainThreadLauncher(void *obj) { reinterpret_cast<Oculus *>(obj)->MainThread(); }
 	static unsigned __stdcall MainThreadLauncherEX(void *obj);
 
 	void GetSnap();
