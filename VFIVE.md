@@ -93,7 +93,7 @@ For details of VFIVE, please see the following paper;
 
 &nbsp; **main.cpp**
 
-&nbsp; In Oculus SDK, left-eye image and right-image is drawn on same render buffer.
+&nbsp; In Oculus SDK, left-eye image and right-eye image are drawn on same render buffer.
 ```diff
 +     #ifndef USE_CLCL_OCULUS_SDK
   337     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
