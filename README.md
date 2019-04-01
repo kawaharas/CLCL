@@ -60,7 +60,7 @@ Compilation of the code.
 3) Change include path and library path from CAVELib's to CLCL's.
 4) Change library file to link from "libcave_ogl_XX.lib" to "CLCL.lib".
 5) Build with multi-threaded (/MT) option.
-6) If compilation failed, modification of codes is needed. -> go back to 5)
+6) If compilation failed, modification of code or project settings are needed. -> go back to 5)
 
 ## Controller Inputs
 
