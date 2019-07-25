@@ -12,7 +12,7 @@ in CLCL. Networking functions for multiple CAVEs have not yet been implemented.
 
 ## Required Hardware
 
-&nbsp; One of the following hardware:
+One of the following hardware:
 
 - Oculus Rift with Oculus Touch, Xbox controller or mouse
 - Oculus Development Kit 2 with mouse
@@ -26,7 +26,7 @@ in CLCL. Networking functions for multiple CAVEs have not yet been implemented.
 - GLFW 3.2.1 *
 - GLEW 2.1.0 *
 
-&nbsp; \*  These libraries are needed to build with multi-threaded (/MT) option.
+\*  These libraries are needed to build with multi-threaded (/MT) option.
 
 **Optional (experimental: for the external camera function):**
 
@@ -39,8 +39,8 @@ To toggle enable/disable the external camera, press "c" key.
 - GLM 0.9.9 *
 - Ovrvision Pro SDK 1.90 **
 
-&nbsp; \*  These libraries are needed to use the external camera (ZED Mini by Stereolabs).  
-&nbsp; \** The library is needed to use the external camera (Ovrvision Pro by Wizapply).
+\*  These libraries are needed to use the external camera (ZED Mini by Stereolabs).  
+\** The library is needed to use the external camera (Ovrvision Pro by Wizapply).
 
 ## Building the Library
 
@@ -67,11 +67,18 @@ Compilation of the code.
 | |CAVE_JOYSTICK_X<br>CAVE_JOYSTICK_Y |CAVE_BUTTON1 |CAVE_BUTTON2 |CAVE_BUTTON3 |
 |---|---|---|---|---|
 |Oculus Touch (Right) |Thumb stick |Button A |Trigger |Button B |
+|XBox controller |Thumb stick |Button X |Button Y |Button B |
 |Mouse |Wheel (CAVE_JOYSTICK_Y) |Left button |Middle button |Right button |
+
+## Citation
+
+Please cite the following paper if you find this library useful in your work.
+
+Shintaro Kawahara and Akira Kageyama: Development of CAVELib Compatible Library for HMD-type VR Devices, Journal of Advanced Simulation in Science and Engineering, Vol.6, No.1, pp.234-248 (2019) doi:10.15748/jasse.6.234
 
 ## About Trademarks
 
-&nbsp; The CAVE is a registered trademark of the Board of Trustees of the University of Illinois at Chicago.  
-&nbsp; CAVELib is a trademark of the University of Illinois Board of Trustees.  
-&nbsp; Oculus, Rift, and Oculus Touch are trademarks or registered trademarks of Facebook Technologies, LLC.  
-&nbsp; All other trademarks are property of their respective owners.
+The CAVE is a registered trademark of the Board of Trustees of the University of Illinois at Chicago.  
+CAVELib is a trademark of the University of Illinois Board of Trustees.  
+Oculus, Rift, and Oculus Touch are trademarks or registered trademarks of Facebook Technologies, LLC.  
+All other trademarks are property of their respective owners.

@@ -47,6 +47,8 @@ public:
 
 float CAVENear = 0.1f;
 float CAVEFar  = 100.0f;
+float *CAVEFramesPerSecond = nullptr;
+
 CAVE_SYNC *CAVESync;
 
 bool CAVEMasterWall() { return true; }
@@ -672,6 +674,7 @@ void CAVEConfigure(int *argc, char **argv, char **appdefaults)
 	CAVESync = new CAVE_SYNC;
 	CAVESync->Initted = false;
 	CAVESync->Quit = false;
+	CAVEFramesPerSecond = p_CLCL->p_Impl->hmd()->m_FPS;
 }
 
 void CAVEInit()
@@ -812,6 +815,11 @@ void CAVEGetViewport(int *origX, int *origY, int *width, int *height)
 {
 	// not implemented yet
 	CAVEGetWindowGeometry(origX, origY, width, height);
+}
+
+void sginap(unsigned long milliseconds)
+{
+	CAVEUSleep(milliseconds);
 }
 
 CLCL::CLCL()

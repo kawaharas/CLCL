@@ -79,10 +79,13 @@ Oculus::Oculus()
 	m_DisplayThreadID = 0;
 
 	m_IsInitFunctionExecuted = false;
+
+	m_FPS = new float;
 }
 
 Oculus::~Oculus()
 {
+	delete m_FPS;
 }
 
 void Oculus::Init()
@@ -1273,6 +1276,9 @@ void Oculus::MainThreadEX()
 
 	m_IsInitializedGLFW.store(true);
 
+	int frameCounter = 0;
+	double t, t0;
+	t0 = glfwGetTime();
 	while (m_IsThreadRunning)
 	{
 		ExecInitCallback();
@@ -1288,6 +1294,15 @@ void Oculus::MainThreadEX()
 			glPopMatrix();
 		}
 		PostProcess();
+
+		t = glfwGetTime();
+		if ((t - t0) > 1.0 || frameCounter == 0)
+		{
+			*m_FPS = (float)((double)(frameCounter) / (t - t0));
+			t0 = t;
+			frameCounter = 0;
+		}
+		frameCounter++;
 	}
 
 	ExecStopCallback();

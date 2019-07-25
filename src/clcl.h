@@ -262,7 +262,7 @@ void* CAVEMalloc(size_t size);
 void  CAVEFree(void* ptr);
 
 long long CAVEGetFrameNumber();
-
+extern float *CAVEFramesPerSecond;
 CAVEID CAVEProcessType();
 
 typedef void *CAVELOCK;
@@ -281,7 +281,7 @@ void CAVENavConvertVectorWorldToCAVE(float invector[3], float outvector[3]);
 void CAVEGetViewport(int *origX, int *origY, int *width, int *height);
 void CAVESetOption(CAVEID option, int value);
 
-//void sginap(unsigned long milliseconds) { CAVEUSleep(milliseconds); }
+void sginap(unsigned long milliseconds);
 
 class CLCL
 {

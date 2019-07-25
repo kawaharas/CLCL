@@ -179,6 +179,7 @@ public:
 
 	bool GetKey(int);
 	int  GetMouseButton(int);
+	float *m_FPS;
 
 //	bool UseMirrorWindow() { return m_UseMirrorWindow; }
 
