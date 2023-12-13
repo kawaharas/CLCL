@@ -110,6 +110,19 @@ void Oculus::Init()
 
 	m_HmdDesc = ovr_GetHmdDesc(m_HmdSession);
 	ovrSizei hmdResolution = m_HmdDesc.Resolution;
+	std::cout << "m_HmdDesc.Type = " << m_HmdDesc.Type << std::endl;
+	/*------------------------------------------------------------
+		enum "ovrHmdType" of the major systems are as follows.
+
+			DK1       = 3
+			DK2       = 6
+			Rift(CV1) = 14
+			Rift S    = 16
+			Quest     = 19
+			Quest 2   = 20
+			Quest Pro = 22
+	------------------------------------------------------------ */
+
 #ifdef FULL_SCREEN_MODE
 	m_WindowSize = { 1920, 1080 };
 #else

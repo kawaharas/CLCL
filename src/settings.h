@@ -55,3 +55,4 @@ typedef long long     llong;
 #endif //  USE_OVRVISION
 
 //#define USE_ZEDMINI
+//#define USE_ZED_SDK_VERSION 4 // 2, 3, or 4

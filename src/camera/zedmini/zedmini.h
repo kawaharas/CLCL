@@ -21,11 +21,17 @@
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cuda_gl_interop.h>
+#if (USE_ZED_SDK_VERSION == 2)
 #include <sl_zed/Camera.hpp>
+#else
+#include <sl/Camera.hpp>
+#endif // USE_ZED_SDK_VERSION
 #pragma comment(lib, "cuda.lib")
 #pragma comment(lib, "cudart.lib")
 #pragma comment(lib, "cudart_static.lib")
+#if (ZED_SDK_MAJOR_VERSION == 2)
 #pragma comment(lib, "sl_core64.lib")
+#endif
 #pragma comment(lib, "sl_zed64.lib")
 
 #include "../../camera/zedmini/shader.h"

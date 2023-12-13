@@ -105,6 +105,7 @@ bool ZedMini::Init()
 {
 	glClearDepth(0.0); // for ZEDMini
 
+#if (ZED_SDK_MAJOR_VERSION == 2)
 	sl::InitParameters initParameters;
 	initParameters.camera_resolution = sl::RESOLUTION_HD720;
 //	initParameters.camera_resolution = sl::RESOLUTION_HD1080;
@@ -117,29 +118,68 @@ bool ZedMini::Init()
 //	initParameters.coordinate_units = sl::UNIT_MILLIMETER;
 //	initParameters.coordinate_units = sl::UNIT_CENTIMETER;
 	initParameters.coordinate_units = sl::UNIT_METER;
+#else
+	sl::InitParameters initParameters;
+	initParameters.camera_resolution = sl::RESOLUTION::HD720;
+//	initParameters.camera_resolution = sl::RESOLUTION::HD1080;
+//	initParameters.camera_resolution = sl::RESOLUTION::HD2K;
+//	initParameters.depth_mode = sl::DEPTH_MODE::NONE;
+//	initParameters.depth_mode = sl::DEPTH_MODE::PERFORMANCE;
+//	initParameters.depth_mode = sl::DEPTH_MODE::QUALITY;
+	initParameters.depth_mode = sl::DEPTH_MODE::ULTRA;
+	initParameters.coordinate_system = sl::COORDINATE_SYSTEM::RIGHT_HANDED_Y_UP; // OpenGL's coordinate system is right_handed
+//	initParameters.coordinate_units = sl::UNIT::MILLIMETER;
+//	initParameters.coordinate_units = sl::UNIT::CENTIMETER;
+	initParameters.coordinate_units = sl::UNIT::METER;
+	initParameters.depth_maximum_distance = 500.0f;
+#endif
 	initParameters.depth_minimum_distance = 0.100000f;
 	initParameters.enable_right_side_measure = true;
 
 	// Open the camera
 	sl::ERROR_CODE err = m_Camera.open(initParameters);
+#if (ZED_SDK_MAJOR_VERSION == 2)
 	if (err != sl::SUCCESS)
+#else
+	if (err != sl::ERROR_CODE::SUCCESS)
+#endif
 	{
 		std::cout << toString(err) << std::endl;
 		m_Camera.close();
 		return false; // Quit if an error occurred
 	}
 
+#if (ZED_SDK_MAJOR_VERSION == 2)
 	m_Width  = (int)m_Camera.getResolution().width;
 	m_Height = (int)m_Camera.getResolution().height;
+#elif (ZED_SDK_MAJOR_VERSION == 3)
+#if (ZED_SDK_MINOR_VERSION < 2)
+	m_Width  = (int)m_Camera.getCameraInformation().camera_resolution.width;
+	m_Height = (int)m_Camera.getCameraInformation().camera_resolution.height;
+#else
+	m_Width  = (int)m_Camera.getCameraInformation().camera_configuration.resolution.width;
+	m_Height = (int)m_Camera.getCameraInformation().camera_configuration.resolution.height;
+#endif // ZED_SDK_MINOR_VERSION
+#else
+	m_Width  = (int)(sl::getResolution(initParameters.camera_resolution).width);
+	m_Height = (int)(sl::getResolution(initParameters.camera_resolution).height);
+#endif
 	m_Format = GL_BGRA;
 	std::cout << "Width  : " << m_Width  << std::endl;
 	std::cout << "Height : " << m_Height << std::endl;
 	m_IsOpen = true;
 
+#if (ZED_SDK_MAJOR_VERSION == 2)
 	m_Camera.setDepthMaxRangeValue(500.0);
 	std::cout << "\n[Init]" << std::endl;
 	std::cout << "Resolution=" << sl::toString(initParameters.camera_resolution).c_str() << std::endl;
 	std::cout << "FPS=" << m_Camera.getCameraFPS() << std::endl;
+#else
+//	m_Camera.setDepthMaxRangeValue(500.0); // move to initialization of camera
+	std::cout << "\n[Init]" << std::endl;
+	std::cout << "Resolution=" << sl::toString(initParameters.camera_resolution).c_str() << std::endl;
+	std::cout << "FPS=" << m_Camera.getCameraInformation().camera_configuration.fps << std::endl;
+#endif
 
 #ifdef DEBUG
 	std::cout << "bUseSVO=" << std::endl;
@@ -198,6 +238,7 @@ bool ZedMini::Init()
 		std::cout << "bEnableRightSideMeasure=False" << std::endl;
 	}
 /*
+	// from ZED_SDK 3.0 : CAMERA_SETTINGS is renamed to VIDEO_SETTINGS
 	m_Camera.setCameraSettings(sl::CAMERA_SETTINGS_AUTO_WHITEBALANCE, 0);
 	m_Camera.setCameraSettings(sl::CAMERA_SETTINGS_WHITEBALANCE, 4700, false);
 	m_Camera.setCameraSettings(sl::CAMERA_SETTINGS_GAIN, 56, false);
@@ -229,8 +270,13 @@ bool ZedMini::Init()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		// Set size and default value to texture
+#if (ZED_SDK_MAJOR_VERSION == 2)
 		m_Image[eye].alloc(m_Width, m_Height, sl::MAT_TYPE_8U_C4, sl::MEM_GPU);
 		m_Image[eye].setTo(dark_bckgrd, sl::MEM_GPU);
+#else
+		m_Image[eye].alloc(m_Width, m_Height, sl::MAT_TYPE::U8_C4, sl::MEM::GPU);
+		m_Image[eye].setTo(dark_bckgrd, sl::MEM::GPU);
+#endif
 	}
 
 	glGenTextures(2, m_DepthID);
@@ -245,7 +291,11 @@ bool ZedMini::Init()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		// Set size and default value to texture
+#if (ZED_SDK_MAJOR_VERSION == 2)
 		m_Depth[eye].alloc(m_Width, m_Height, sl::MAT_TYPE_32F_C1, sl::MEM_GPU);
+#else
+		m_Depth[eye].alloc(m_Width, m_Height, sl::MAT_TYPE::F32_C1, sl::MEM::GPU);
+#endif
 	}
 
 	// Register texture
@@ -297,13 +347,24 @@ void ZedMini::PreStore()
 	if (m_IsOpen && m_CameraState)
 	{
 		sl::RuntimeParameters runtime_parameters;
+#if (ZED_SDK_MAJOR_VERSION == 2)
 //		runtime_parameters.sensing_mode = sl::SENSING_MODE_STANDARD; // 0
 		runtime_parameters.sensing_mode = sl::SENSING_MODE_FILL;     // 1
 		runtime_parameters.enable_depth = true;
 		runtime_parameters.enable_point_cloud = false;
+#elif (ZED_SDK_MAJOR_VERSION == 3)
+//		runtime_parameters.sensing_mode = sl::SENSING_MODE::STANDARD; // 0
+		runtime_parameters.sensing_mode = sl::SENSING_MODE::FILL;     // 1
+		runtime_parameters.enable_depth = true;
+#else
+		runtime_parameters.enable_fill_mode = false;
+		runtime_parameters.enable_fill_mode = true;
+		runtime_parameters.enable_depth = true;
+#endif
 
 		// Set the ZED's CUDA context to this separate CPU thread
 		cuCtxSetCurrent(m_Camera.getCUDAContext());
+#if (ZED_SDK_MAJOR_VERSION == 2)
 		if (m_Camera.grab(runtime_parameters) == sl::SUCCESS)
 		{
 			// copy both left and right images
@@ -312,6 +373,16 @@ void ZedMini::PreStore()
 			m_Camera.retrieveMeasure(m_Depth[0], sl::MEASURE_DEPTH, sl::MEM_GPU);
 			m_Camera.retrieveMeasure(m_Depth[1], sl::MEASURE_DEPTH_RIGHT, sl::MEM_GPU);
 		}
+#else
+		if (m_Camera.grab(runtime_parameters) == sl::ERROR_CODE::SUCCESS)
+		{
+			// copy both left and right images
+			m_Camera.retrieveImage(m_Image[0], sl::VIEW::LEFT, sl::MEM::GPU);
+			m_Camera.retrieveImage(m_Image[1], sl::VIEW::RIGHT, sl::MEM::GPU);
+			m_Camera.retrieveMeasure(m_Depth[0], sl::MEASURE::DEPTH, sl::MEM::GPU);
+			m_Camera.retrieveMeasure(m_Depth[1], sl::MEASURE::DEPTH_RIGHT, sl::MEM::GPU);
+		}
+#endif
 		else
 		{
 			sl::sleep_ms(2);
@@ -371,8 +442,13 @@ void ZedMini::DrawRGBImage(int eyeIndex)
 		{
 			cudaGraphicsSubResourceGetMappedArray(&arrIm, cimg_l, 0, 0);
 			cudaMemcpy2DToArray(arrIm, 0, 0,
+#if (ZED_SDK_MAJOR_VERSION == 2)
 				m_Image[ovrEye_Left].getPtr<sl::uchar1>(sl::MEM_GPU),
 				m_Image[ovrEye_Left].getStepBytes(sl::MEM_GPU),
+#else
+				m_Image[ovrEye_Left].getPtr<sl::uchar1>(sl::MEM::GPU),
+				m_Image[ovrEye_Left].getStepBytes(sl::MEM::GPU),
+#endif
 				m_Image[ovrEye_Left].getWidth() * 4,
 				m_Image[ovrEye_Left].getHeight(), cudaMemcpyDeviceToDevice);
 			glBindTexture(GL_TEXTURE_2D, m_TexID[ovrEye_Left]);
@@ -383,8 +459,13 @@ void ZedMini::DrawRGBImage(int eyeIndex)
 		{
 			cudaGraphicsSubResourceGetMappedArray(&arrIm, cimg_r, 0, 0);
 			cudaMemcpy2DToArray(arrIm, 0, 0,
+#if (ZED_SDK_MAJOR_VERSION == 2)
 				m_Image[ovrEye_Right].getPtr<sl::uchar1>(sl::MEM_GPU),
 				m_Image[ovrEye_Right].getStepBytes(sl::MEM_GPU),
+#else
+				m_Image[ovrEye_Right].getPtr<sl::uchar1>(sl::MEM::GPU),
+				m_Image[ovrEye_Right].getStepBytes(sl::MEM::GPU),
+#endif
 				m_Image[ovrEye_Right].getWidth() * 4,
 				m_Image[ovrEye_Right].getHeight(), cudaMemcpyDeviceToDevice);
 			glBindTexture(GL_TEXTURE_2D, m_TexID[ovrEye_Right]);
@@ -403,9 +484,26 @@ void ZedMini::DrawDepth(int eyeIndex)
 {
 	if (m_IsOpen && m_CameraState)
 	{
+#if (ZED_SDK_MAJOR_VERSION == 2)
 		sl::CalibrationParameters calib_params = m_Camera.getCameraInformation().calibration_parameters;
 		const float z_near = m_Camera.getDepthMinRangeValue();
 		const float z_far  = m_Camera.getDepthMaxRangeValue();
+#elif (ZED_SDK_MAJOR_VERSION == 3)
+#if (ZED_SDK_MINOR_VERSION < 2)
+		sl::CalibrationParameters calib_params = m_Camera.getCameraInformation().calibration_parameters;
+		const float z_near = m_Camera.getInitParameters().depth_minimum_distance;
+		const float z_far  = m_Camera.getInitParameters().depth_maximum_distance;
+#else
+		sl::CalibrationParameters calib_params = m_Camera.getCameraInformation().camera_configuration.calibration_parameters;
+		const float z_near = m_Camera.getInitParameters().depth_minimum_distance;
+		const float z_far = m_Camera.getInitParameters().depth_maximum_distance;
+#endif // ZED_SDK_MINOR_VERSION
+#else
+		sl::CalibrationParameters calib_params = m_Camera.getCameraInformation().camera_configuration.calibration_parameters;
+		const float z_near = m_Camera.getInitParameters().depth_minimum_distance;
+		const float z_far  = m_Camera.getInitParameters().depth_maximum_distance;
+		//ERROR_CODE getCameraSettingsRange(VIDEO_SETTINGS settings, int& min, int& max);
+#endif
 		const float fov_x  = glm::radians(calib_params.left_cam.h_fov);
 		const float fov_y  = glm::radians(calib_params.left_cam.v_fov);
 		const float width  = static_cast<float>(calib_params.left_cam.image_size.width);
@@ -447,8 +545,13 @@ void ZedMini::DrawDepth(int eyeIndex)
 		{
 			cudaGraphicsSubResourceGetMappedArray(&arrIm, cimg_ld, 0, 0);
 			cudaMemcpy2DToArray(arrIm, 0, 0,
+#if (ZED_SDK_MAJOR_VERSION == 2)
 				m_Depth[ovrEye_Left].getPtr<sl::uchar1>(sl::MEM_GPU),
 				m_Depth[ovrEye_Left].getStepBytes(sl::MEM_GPU),
+#else
+				m_Depth[ovrEye_Left].getPtr<sl::uchar1>(sl::MEM::GPU),
+				m_Depth[ovrEye_Left].getStepBytes(sl::MEM::GPU),
+#endif
 				m_Depth[ovrEye_Left].getWidth() * 4,
 				m_Depth[ovrEye_Left].getHeight(), cudaMemcpyDeviceToDevice);
 			glBindTexture(GL_TEXTURE_2D, m_DepthID[ovrEye_Left]);
@@ -459,8 +562,13 @@ void ZedMini::DrawDepth(int eyeIndex)
 		{
 			cudaGraphicsSubResourceGetMappedArray(&arrIm, cimg_rd, 0, 0);
 			cudaMemcpy2DToArray(arrIm, 0, 0,
+#if (ZED_SDK_MAJOR_VERSION == 2)
 				m_Depth[ovrEye_Right].getPtr<sl::uchar1>(sl::MEM_GPU),
 				m_Depth[ovrEye_Right].getStepBytes(sl::MEM_GPU),
+#else
+				m_Depth[ovrEye_Right].getPtr<sl::uchar1>(sl::MEM::GPU),
+				m_Depth[ovrEye_Right].getStepBytes(sl::MEM::GPU),
+#endif
 				m_Depth[ovrEye_Right].getWidth() * 4,
 				m_Depth[ovrEye_Right].getHeight(), cudaMemcpyDeviceToDevice);
 			glBindTexture(GL_TEXTURE_2D, m_DepthID[ovrEye_Right]);
